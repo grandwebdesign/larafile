@@ -31,7 +31,7 @@ class Larafile
             $this->fileName = $this->file->getClientOriginalName();
         }
 
-        if ($this->storage->exists($this->folder . '/' . $this->file)) {
+        if ($this->storage->exists($this->folder . '/' . $this->fileName)) {
             $this->fileName = time() . '-' . $this->file->getClientOriginalName();
         }
     }
