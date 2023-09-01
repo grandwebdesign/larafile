@@ -28,7 +28,7 @@ class Larafile
     {
         $this->storage = Storage::disk('uploads');
         if (!$this->fileName && !is_string($this->file)) {
-            $this->fileName = $this->file->getClientOriginalName() . '.' . $this->file->getClientOriginalExtension();
+            $this->fileName = $this->file->getClientOriginalName();
         }
     }
 
@@ -63,7 +63,7 @@ class Larafile
 
         $this->cleanTempFolder($compressedFile ?? null);
 
-        return $this->folder . '/' . $this->fileName;
+        return 'uploads/' . $this->folder . '/' . $this->fileName;
     }
 
     /**
