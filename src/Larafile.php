@@ -30,6 +30,10 @@ class Larafile
         if (!$this->fileName && !is_string($this->file)) {
             $this->fileName = $this->file->getClientOriginalName();
         }
+
+        if ($this->storage->exists($this->folder . '/' . $this->file)) {
+            $this->fileName = time() . '-' . $this->file->getClientOriginalName();
+        }
     }
 
     /**
