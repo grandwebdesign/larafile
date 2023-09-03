@@ -95,7 +95,7 @@ class Larafile
     private function compress()
     {
         if (!config('larafile.tinify_key')) {
-            throw new MissingValue('TINIFY_KEY environment variable is not set.', 422);
+            throw new Error('TINIFY_KEY environment variable is not set.', 422);
         }
 
         if (!in_array($this->file->getMimeType(), $this->allowedFileTypesToCompress())) {
@@ -108,7 +108,7 @@ class Larafile
 
         $tempFile = storage_path('app/public/temp/' . uniqid('temp-img-') . '.' . $this->file->getClientOriginalExtension());
 
-        \Tinify\setKey(config('digitaloceanspaces.tinify_key'));
+        \Tinify\setKey(config('larafile.tinify_key'));
         \Tinify\fromBuffer(
             file_get_contents($this->file->getRealPath())
         )->toFile($tempFile);
